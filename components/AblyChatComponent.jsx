@@ -60,40 +60,40 @@ const AblyChatComponent = () => {
   overflow-x-hidden h-[50%] w-[100%] max-h-[20em]"
       >
         {messages.map((messageContent, index) => (
-          <div
-            className="flex p-1"
-            id={
-              messageContent.connectionId === ably.connection.id
-                ? "you"
-                : "other"
-            }
-            key={`${messageContent.connectionId}+${index}`}
-          >
+          <>
             <div
-              className={`flex justify-end flex-col
+              className="flex p-1"
+              id={
+                messageContent.props["data-author"] === "me" ? "you" : "other"
+              }
+              key={index}
+            >
+              <div
+                className={`flex justify-end flex-col
             ${
-              messageContent.connectionId === ably.connection.id
+              messageContent.props["data-author"] === "me"
                 ? "items-start"
                 : "items-end"
             } `}
-            >
-              <div
-                className={`text-xl ${
-                  messageContent.connectionId === ably.connection.id
-                    ? "bg-blue-300"
-                    : "bg-green-300"
-                }
-               px-5 py-1 rounded-lg`}
               >
-                <p>{messageContent}</p>
-              </div>
+                <div
+                  className={`text-xl ${
+                    messageContent.props["data-author"] === "me"
+                      ? "bg-blue-300"
+                      : "bg-green-300"
+                  }
+               px-5 py-1 rounded-lg`}
+                >
+                  <p>{messageContent}</p>
+                </div>
 
-              {/* <div className="flex   space-x-1 items-center justify-center">
+                {/* <div className="flex   space-x-1 items-center justify-center">
               <p className=" font-normal ">{messageContent.time}</p>
               <p className="-mt-[1px]">{messageContent.author}</p>
             </div> */}
+              </div>
             </div>
-          </div>
+          </>
         ))}
       </div>
 
