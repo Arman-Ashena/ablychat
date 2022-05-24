@@ -51,7 +51,7 @@ const AblyChatComponent = () => {
     return Math.random();
   }
   return (
-    <div className="space-y-[0.5] p-6 m-auto w-[40%]">
+    <div className="space-y-[0.5] p-6 m-auto md:w-[40%] w-full">
       <div className="flex flex-col  ">
         <h3 className="text-xl text-center bg-slate-500 text-white py-1 px-2 rounded-tr-[3px] rounded-tl-[3px]">
           آرمان پیام
