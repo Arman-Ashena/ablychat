@@ -67,7 +67,7 @@ const AblyChatComponent = () => {
                 ? "you"
                 : "other"
             }
-            key={index}
+            key={`${messageContent.connectionId}+${index}`}
           >
             <div
               className={`flex justify-end flex-col
@@ -76,7 +76,6 @@ const AblyChatComponent = () => {
                 ? "items-start"
                 : "items-end"
             } `}
-              key={index + 10}
             >
               <div
                 className={`text-xl ${
@@ -85,9 +84,8 @@ const AblyChatComponent = () => {
                     : "bg-green-300"
                 }
                px-5 py-1 rounded-lg`}
-                key={index + 20}
               >
-                <p key={index + 1}>{messageContent}</p>
+                <p>{messageContent}</p>
               </div>
 
               {/* <div className="flex   space-x-1 items-center justify-center">
