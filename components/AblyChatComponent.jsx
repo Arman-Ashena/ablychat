@@ -59,7 +59,7 @@ const AblyChatComponent = () => {
         className="min-h-[20em] border border-gray-300  overflow-y-auto 
   overflow-x-hidden h-[50%] w-[100%] max-h-[20em]"
       >
-        {messages.map((messageContent) => (
+        {messages.map((messageContent, index) => (
           <div
             className="flex p-1"
             id={
@@ -67,7 +67,7 @@ const AblyChatComponent = () => {
                 ? "you"
                 : "other"
             }
-            key={messageContent.connectionId}
+            key={index}
           >
             <div
               className={`flex justify-end flex-col
@@ -85,7 +85,7 @@ const AblyChatComponent = () => {
                 }
                px-5 py-1 rounded-lg`}
               >
-                <p>{messageContent}</p>
+                <p key={index}>{messageContent}</p>
               </div>
 
               {/* <div className="flex   space-x-1 items-center justify-center">
