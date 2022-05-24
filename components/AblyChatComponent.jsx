@@ -51,10 +51,10 @@ const AblyChatComponent = () => {
     return Math.random();
   }
   return (
-    <div className="space-y-[0.5] ">
+    <div className="space-y-[0.5] p-6 m-auto w-[40%]">
       <div className="flex flex-col  ">
-        <h3 className="text-xl bg-slate-500 text-white py-1 px-2 rounded-tr-[3px] rounded-tl-[3px]">
-          Live Chat
+        <h3 className="text-xl text-center bg-slate-500 text-white py-1 px-2 rounded-tr-[3px] rounded-tl-[3px]">
+          آرمان پیام
         </h3>
       </div>
 
@@ -64,22 +64,19 @@ const AblyChatComponent = () => {
       >
         {messages.map((messageContent, index) => (
           <>
-            {console.log("ww", makeRandom())}
             <div
-              className="flex p-1"
+              className={`flex  flex-col p-2
+            ${
+              messageContent.props["data-author"] === "me"
+                ? " items-end"
+                : " items-start"
+            } `}
               id={
                 messageContent.props["data-author"] === "me" ? "you" : "other"
               }
               key={makeRandom()}
             >
-              <div
-                className={`flex justify-end flex-col
-            ${
-              messageContent.props["data-author"] === "me"
-                ? "items-start"
-                : "items-end"
-            } `}
-              >
+              <div>
                 <div
                   className={`text-xl ${
                     messageContent.props["data-author"] === "me"
