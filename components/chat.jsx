@@ -23,7 +23,7 @@ const AblyChatComponent = () => {
   const sendChatMessage = (messageText) => {
     channel.publish({ name: "chat-message", data: messageText });
     setMessageText("");
-    // inputBox.focus();
+    inputBox.focus();
   };
 
   const handleFormSubmission = () => {
@@ -47,6 +47,10 @@ const AblyChatComponent = () => {
     );
   });
 
+  useEffect(() => {
+    messageEnd.scrollIntoView({ behaviour: "smooth" });
+  });
+
   return (
     <div className="space-y-[0.5] ">
       <div className="flex flex-col  ">
@@ -57,40 +61,32 @@ const AblyChatComponent = () => {
 
       <div
         className="min-h-[20em] border border-gray-300  overflow-y-auto 
-  overflow-x-hidden h-[50%] w-[100%] max-h-[20em]"
+    overflow-x-hidden h-[50%] w-[100%] max-h-[20em]"
       >
         {messages.map((messageContent) => (
           <div
             className="flex p-1"
-            id={
-              messageContent.connectionId === ably.connection.id
-                ? "you"
-                : "other"
-            }
+            id={username === messageContent.author ? "you" : "other"}
           >
             <div
-              className={`flex justify-end flex-col
-            ${
-              messageContent.connectionId === ably.connection.id
-                ? "items-start"
-                : "items-end"
-            } `}
+              className={`flex justify-end flex-col 
+          ${username === messageContent.author ? "items-start" : "items-end"} `}
             >
               <div
                 className={`text-xl ${
-                  messageContent.connectionId === ably.connection.id
+                  username === messageContent.author
                     ? "bg-blue-300"
                     : "bg-green-300"
                 }
-               px-5 py-1 rounded-lg`}
+             px-5 py-1 rounded-lg`}
               >
-                <p>{messageContent}</p>
+                <p>{messageText}</p>
               </div>
 
               {/* <div className="flex   space-x-1 items-center justify-center">
-              <p className=" font-normal ">{messageContent.time}</p>
-              <p className="-mt-[1px]">{messageContent.author}</p>
-            </div> */}
+                <p className=" font-normal ">{messageContent.time}</p>
+                <p className="-mt-[1px]">{messageContent.author}</p>
+              </div> */}
             </div>
           </div>
         ))}
@@ -101,48 +97,19 @@ const AblyChatComponent = () => {
           type="text"
           className="border   p-4 w-full border-green-500 "
           placeholder="hey... this is a message"
-          value={messageText}
+          value={currentMessage}
           onChange={(e) => setMessageText(e.target.value)}
           onKeyPress={handleKeyPress}
         />
         <button
           className=" flex items-center justify-center 
-        text-white text-4xl font-bold bg-green-600  px-3 "
+          text-white text-4xl font-bold bg-green-600  px-3 "
           onClick={handleFormSubmission}
         >
           &#9658;
         </button>
       </div>
     </div>
-    // <div className={styles.chatHolder}>
-    //   <div className={styles.chatText}>
-    //     {messages}
-    //     <div
-    //       ref={(element) => {
-    //         messageEnd = element;
-    //       }}
-    //     ></div>
-    //   </div>
-    //   <form onSubmit={handleFormSubmission} className={styles.form}>
-    //     <textarea
-    //       ref={(element) => {
-    //         inputBox = element;
-    //       }}
-    //       value={messageText}
-    //       placeholder="Type a message..."
-    //       onChange={(e) => setMessageText(e.target.value)}
-    //       onKeyPress={handleKeyPress}
-    //       className={styles.textarea}
-    //     ></textarea>
-    //     <button
-    //       type="submit"
-    //       className={styles.button}
-    //       disabled={messageTextIsEmpty}
-    //     >
-    //       Send
-    //     </button>
-    //   </form>
-    // </div>
   );
 };
 
