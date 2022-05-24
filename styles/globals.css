@@ -37,3 +37,6 @@ a {
 .message-content #author {
   margin-left: 10px;
 }
+.scrollDiv {
+  height: 300px;
+}

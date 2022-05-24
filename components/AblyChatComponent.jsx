@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useChannel } from "./AblyReactEffect";
 import styles from "./AblyChatComponent.module.css";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 const AblyChatComponent = () => {
   let inputBox = null;
@@ -50,6 +51,7 @@ const AblyChatComponent = () => {
   function makeRandom() {
     return Math.random();
   }
+
   return (
     <div className="space-y-[0.5] p-6 m-auto md:w-[40%] w-full">
       <div className="flex flex-col  ">
@@ -57,13 +59,10 @@ const AblyChatComponent = () => {
           آرمان پیام
         </h3>
       </div>
-
-      <div
-        className="min-h-[20em] border border-gray-300  overflow-y-auto 
-  overflow-x-hidden h-[50%] w-[100%] max-h-[20em]"
-      >
-        {messages.map((messageContent, index) => (
+      <ScrollToBottom className="w-[100%] scrollDiv border border-gray-300">
+        {messages.map((messageContent) => (
           <>
+            {console.log("dfsdf", messageContent)}
             <div
               className={`flex  flex-col p-2
             ${
@@ -96,8 +95,7 @@ const AblyChatComponent = () => {
             </div>
           </>
         ))}
-      </div>
-
+      </ScrollToBottom>
       <div className="flex  ">
         <input
           type="text"
