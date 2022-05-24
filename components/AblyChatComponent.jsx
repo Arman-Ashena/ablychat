@@ -46,7 +46,9 @@ const AblyChatComponent = () => {
       </span>
     );
   });
-  //ddd
+  function makeRandom() {
+    return Math.random();
+  }
   return (
     <div className="space-y-[0.5] ">
       <div className="flex flex-col  ">
@@ -61,12 +63,13 @@ const AblyChatComponent = () => {
       >
         {messages.map((messageContent, index) => (
           <>
+            {console.log("ww", makeRandom())}
             <div
               className="flex p-1"
               id={
                 messageContent.props["data-author"] === "me" ? "you" : "other"
               }
-              key={index}
+              key={makeRandom()}
             >
               <div
                 className={`flex justify-end flex-col
