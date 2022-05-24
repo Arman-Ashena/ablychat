@@ -67,6 +67,7 @@ const AblyChatComponent = () => {
                 ? "you"
                 : "other"
             }
+            key={messageContent.connectionId}
           >
             <div
               className={`flex justify-end flex-col
