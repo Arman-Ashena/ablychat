@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useChannel } from "./AblyReactEffect";
-import styles from "./AblyChatComponent.module.css";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 const AblyChatComponent = () => {
-  let inputBox = null;
-  let messageEnd = null;
   const [messageText, setMessageText] = useState("");
   const [receivedMessages, setMessages] = useState([]);
   const messageTextIsEmpty = messageText.trim().length === 0;
@@ -42,7 +39,7 @@ const AblyChatComponent = () => {
   const messages = receivedMessages.map((message, index) => {
     const author = message.connectionId === ably.connection.id ? "me" : "other";
     return (
-      <span key={index} className={styles.message} data-author={author}>
+      <span key={index} data-author={author}>
         {message.data}
       </span>
     );
